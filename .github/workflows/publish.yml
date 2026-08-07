@@ -1,0 +1,37 @@
+name: Publish to npm
+
+# Manual only: Hyper has no separate plugin store — it discovers plugins by
+# searching npm for the `hyper-plugin` keyword (already set in package.json).
+# Run this from the Actions tab when you're ready to publish the version
+# currently on the selected branch/tag.
+#
+# Requires a repo secret NPM_TOKEN: an npm "Automation" access token with
+# publish rights for this package (https://www.npmjs.com/settings/<you>/tokens).
+
+on:
+  workflow_dispatch:
+    inputs:
+      npm-tag:
+        description: 'npm dist-tag to publish under'
+        required: false
+        default: 'latest'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+      - run: npm run check
+      - name: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TAG: ${{ inputs.npm-tag }}
+        run: npm publish --tag "$NPM_TAG"

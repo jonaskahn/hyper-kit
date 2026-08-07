@@ -1,0 +1,108 @@
+export type ToolCategory = 'Agents' | 'Language' | 'Tool' | 'Runtime';
+
+export interface ToolSpec {
+  name: string;
+  command: string;
+  versionFlag?: string;
+  category: ToolCategory;
+}
+
+export const CATEGORY_ORDER: ToolCategory[] = ['Agents', 'Language', 'Tool', 'Runtime'];
+
+/* One table owns every tool's display name, probe command, and category.
+   tool-probe.ts runs the probes; env-panel.ts groups the results. Order
+   within a category is the default display priority. */
+export const TOOL_CATALOG: ToolSpec[] = [
+  // --- agents ---
+  { name: 'Claude', command: 'claude', category: 'Agents' },
+  { name: 'Codex', command: 'codex', category: 'Agents' },
+  { name: 'OpenCode', command: 'opencode', category: 'Agents' },
+  { name: 'Cursor', command: 'agent', category: 'Agents' },
+  { name: 'Gemini', command: 'gemini', category: 'Agents' },
+  { name: 'Copilot', command: 'copilot', category: 'Agents' },
+  { name: 'Aider', command: 'aider', category: 'Agents' },
+  { name: 'Amp', command: 'amp', category: 'Agents' },
+  { name: 'Goose', command: 'goose', category: 'Agents' },
+  { name: 'Devin', command: 'devin', category: 'Agents' },
+  { name: 'Qwen Code', command: 'qwen-code', category: 'Agents' },
+  { name: 'Kode', command: 'kode', category: 'Agents' },
+  { name: 'Kiro', command: 'kiro', category: 'Agents' },
+  { name: 'Kimi', command: 'kimi', category: 'Agents' },
+  { name: 'OpenHands', command: 'openhands', category: 'Agents' },
+  { name: 'Zed', command: 'zed', category: 'Agents' },
+  { name: 'Windsurf', command: 'windsurf', category: 'Agents' },
+  { name: 'Antigravity', command: 'antigravity', category: 'Agents' },
+  { name: 'Trae', command: 'trae', category: 'Agents' },
+  // --- languages ---
+  { name: 'Node', command: 'node', category: 'Language' },
+  { name: 'Python', command: 'python3', category: 'Language' },
+  { name: 'Go', command: 'go', versionFlag: 'version', category: 'Language' },
+  { name: 'Rust', command: 'rustc', category: 'Language' },
+  { name: 'TypeScript', command: 'tsc', category: 'Language' },
+  { name: 'Java', command: 'java', category: 'Language' },
+  { name: 'Swift', command: 'swift', category: 'Language' },
+  { name: 'Ruby', command: 'ruby', category: 'Language' },
+  { name: 'PHP', command: 'php', category: 'Language' },
+  { name: 'Kotlin', command: 'kotlinc', versionFlag: '-version', category: 'Language' },
+  { name: 'C#', command: 'dotnet', category: 'Language' },
+  { name: 'Dart', command: 'dart', category: 'Language' },
+  { name: 'Scala', command: 'scala', versionFlag: '-version', category: 'Language' },
+  { name: 'Elixir', command: 'elixir', category: 'Language' },
+  { name: 'Haskell', command: 'ghc', category: 'Language' },
+  { name: 'Julia', command: 'julia', category: 'Language' },
+  { name: 'Perl', command: 'perl', category: 'Language' },
+  { name: 'Lua', command: 'lua', versionFlag: '-v', category: 'Language' },
+  { name: 'R', command: 'Rscript', category: 'Language' },
+  { name: 'Clojure', command: 'clojure', category: 'Language' },
+  { name: 'Zig', command: 'zig', versionFlag: 'version', category: 'Language' },
+  { name: 'Crystal', command: 'crystal', category: 'Language' },
+  { name: 'Groovy', command: 'groovy', category: 'Language' },
+  { name: 'Nim', command: 'nim', category: 'Language' },
+  { name: 'GCC', command: 'gcc', category: 'Language' },
+  { name: 'Clang', command: 'clang', category: 'Language' },
+  // --- tools ---
+  { name: 'Git', command: 'git', category: 'Tool' },
+  { name: 'Docker', command: 'docker', category: 'Tool' },
+  { name: 'Npm', command: 'npm', category: 'Tool' },
+  { name: 'Bun', command: 'bun', category: 'Tool' },
+  { name: 'Deno', command: 'deno', category: 'Tool' },
+  { name: 'Flutter', command: 'flutter', category: 'Tool' },
+  { name: 'Pnpm', command: 'pnpm', category: 'Tool' },
+  { name: 'Yarn', command: 'yarn', category: 'Tool' },
+  { name: 'Cargo', command: 'cargo', category: 'Tool' },
+  { name: 'Kubectl', command: 'kubectl', versionFlag: 'version', category: 'Tool' },
+  { name: 'Terraform', command: 'terraform', versionFlag: 'version', category: 'Tool' },
+  { name: 'Aws', command: 'aws', category: 'Tool' },
+  { name: 'Gcloud', command: 'gcloud', category: 'Tool' },
+  { name: 'Azure', command: 'az', category: 'Tool' },
+  { name: 'Cmake', command: 'cmake', category: 'Tool' },
+  { name: 'Gradle', command: 'gradle', category: 'Tool' },
+  { name: 'Maven', command: 'mvn', category: 'Tool' },
+  { name: 'Make', command: 'make', category: 'Tool' },
+  { name: 'Nvim', command: 'nvim', category: 'Tool' },
+  { name: 'Tmux', command: 'tmux', versionFlag: '-V', category: 'Tool' },
+  { name: 'Zsh', command: 'zsh', category: 'Tool' },
+  { name: 'Bash', command: 'bash', category: 'Tool' },
+  { name: 'Jq', command: 'jq', category: 'Tool' },
+  { name: 'Rg', command: 'rg', category: 'Tool' },
+  { name: 'Fzf', command: 'fzf', category: 'Tool' },
+  { name: 'Htop', command: 'htop', category: 'Tool' },
+  { name: 'Curl', command: 'curl', category: 'Tool' },
+  { name: 'Wget', command: 'wget', category: 'Tool' },
+  { name: 'Brew', command: 'brew', category: 'Tool' },
+  { name: 'Ansible', command: 'ansible', category: 'Tool' },
+  { name: 'Fvm', command: 'fvm', category: 'Tool' },
+  { name: 'Nix', command: 'nix', category: 'Tool' },
+  // --- runtimes / version managers ---
+  { name: 'Nvm', command: 'nvm', category: 'Runtime' },
+  { name: 'Volta', command: 'volta', category: 'Runtime' },
+  { name: 'Fnm', command: 'fnm', category: 'Runtime' },
+  { name: 'Pyenv', command: 'pyenv', category: 'Runtime' },
+  { name: 'Rbenv', command: 'rbenv', category: 'Runtime' },
+  { name: 'Asdf', command: 'asdf', category: 'Runtime' },
+  { name: 'Rustup', command: 'rustup', category: 'Runtime' },
+  { name: 'Poetry', command: 'poetry', category: 'Runtime' },
+  { name: 'Mise', command: 'mise', category: 'Runtime' },
+  { name: 'Pkgx', command: 'pkgx', category: 'Runtime' },
+  { name: 'Nodenv', command: 'nodenv', category: 'Runtime' },
+];

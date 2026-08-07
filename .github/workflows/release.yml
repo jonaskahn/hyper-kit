@@ -1,0 +1,48 @@
+name: Release
+
+# Tag push (e.g. `git tag v0.0.1 && git push origin v0.0.1`) builds dist/ and
+# opens a draft GitHub release with the build attached as a downloadable
+# artifact. The release stays a draft until a maintainer reviews and
+# publishes it by hand; publishing to npm is a separate, manually-triggered
+# workflow (publish.yml).
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-draft-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Package release artifact
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          mkdir -p release-artifact
+          zip -r "release-artifact/hyper-kit-${TAG}.zip" \
+            dist index.js package.json README.md logo.png
+
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" \
+            "release-artifact/hyper-kit-${TAG}.zip" \
+            --draft \
+            --title "$TAG" \
+            --generate-notes
