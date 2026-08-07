@@ -20,4 +20,5 @@ export interface HyperAction {
   type: string;
   uid?: string;
   data?: string;
+  cwd?: string;
 }

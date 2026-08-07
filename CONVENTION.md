@@ -71,12 +71,12 @@ Never acceptable:
 
 1. **`core/`** — pure, host-agnostic logic and types. No DOM, no Node, no Hyper store, no `localStorage`. If you can unit-test it without `jsdom`, it belongs here.
 2. **`platform/`** — a thin wrapper around exactly one host capability each: the Hyper redux store (`hyper-store.ts`), DOM events (`event-bus.ts`), `localStorage` (`width-storage.ts`), style injection (`style-injector.ts`), `child_process` probing (`tool-probe.ts`), plus `platform/state/` — small encapsulated stores (built on `core/keyed-store.ts`) for state genuinely shared by two or more features.
-3. **`features/verticalTabs/`** — one file per user-visible capability of the vertical-tab cartridge, composing `core/` + `platform/` into behavior (`drag-drop-tabs.ts`, `tabs.ts`, `tabbar.ts`, `session-tracking.ts`, `env-panel.ts`). A feature may import another feature only when the two are genuinely coupled (e.g. `tabs.ts` calls `env-panel.ts`'s `updateEnvInfo`); if a third feature needs the same thing, promote it down into `core/` or `platform/` instead of letting cross-imports fan out.
+3. **`features/tabs/`** — one file per user-visible capability of the vertical-tab cartridge, composing `core/` + `platform/` into behavior (`drag-drop-tabs.ts`, `tabs.ts`, `tabbar.ts`, `session-tracking.ts`, `env-panel.ts`). A feature may import another feature only when the two are genuinely coupled (e.g. `tabs.ts` calls `env-panel.ts`'s `updateEnvInfo`); if a third feature needs the same thing, promote it down into `core/` or `platform/` instead of letting cross-imports fan out.
 4. **`index.ts`** — the single Hyper-facing composition root. It may import anything. This is the only file that should know about Hyper's plugin hook surface (`decorateConfig`, `middleware`, `decorateTab`, etc.) — everything else is plain TypeScript that happens to be consumed by it.
 
 `config.ts` and `types.ts` sit outside this stack as shared exceptions any layer may import — they're small, single-purpose, and used everywhere.
 
-**Where does a new feature go?** If it's a new user-visible capability (a new panel, a new interaction), add one file to `features/verticalTabs/`. If it needs a new piece of shared state, add a small store to `platform/state/`. If it needs a new host capability (a new Electron/Node API), add one file to `platform/`. If it's pure logic with no side effects, it goes in `core/`. Don't reach backward — `core/` never imports from `platform/` or `features/`.
+**Where does a new feature go?** If it's a new user-visible capability (a new panel, a new interaction), add one file to `features/tabs/`. If it needs a new piece of shared state, add a small store to `platform/state/`. If it needs a new host capability (a new Electron/Node API), add one file to `platform/`. If it's pure logic with no side effects, it goes in `core/`. Don't reach backward — `core/` never imports from `platform/` or `features/`.
 
 ## Error handling
 

@@ -5,7 +5,7 @@ import {
   renderEnvPanel,
   updateEnvInfo,
   getEnvPanelEl,
-} from '../../../src/features/verticalTabs/env-panel';
+} from '../../../src/features/tabs/env-panel';
 import { cwdMap, statusMap, sessionStart } from '../../../src/platform/state/tab-session-store';
 import { setActiveTab } from '../../../src/platform/state/active-tab';
 import { setStore } from '../../../src/platform/hyper-store';

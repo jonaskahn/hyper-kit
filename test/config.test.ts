@@ -5,6 +5,7 @@ import {
   categorySettings,
   clampWidth,
   isDragDropTabsEnabled,
+  isNewTabSameDirEnabled,
   isVerticalTabEnabled,
   readUiConfig,
   MIN_WIDTH,
@@ -12,16 +13,23 @@ import {
 } from '../src/config';
 
 describe('config', () => {
-  it('enables verticalTab and dragDropTabs by default', () => {
+  it('enables verticalTab, dragDropTabs, and newTabSameDir by default', () => {
     applyConfig(null);
     expect(isVerticalTabEnabled()).toBe(true);
     expect(isDragDropTabsEnabled()).toBe(true);
+    expect(isNewTabSameDirEnabled()).toBe(true);
   });
 
   it('powers dragDropTabs down independently of verticalTab', () => {
     applyConfig({ hyperKit: { verticalTab: true, dragDropTabs: false } });
     expect(isVerticalTabEnabled()).toBe(true);
     expect(isDragDropTabsEnabled()).toBe(false);
+  });
+
+  it('powers newTabSameDir down independently', () => {
+    applyConfig({ hyperKit: { verticalTab: true, newTabSameDir: false } });
+    expect(isVerticalTabEnabled()).toBe(true);
+    expect(isNewTabSameDirEnabled()).toBe(false);
   });
   it('uses defaults for unknown categories', () => {
     applyConfig(null);

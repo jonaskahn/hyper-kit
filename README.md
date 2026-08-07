@@ -27,6 +27,7 @@ Every power-up is part of **one cartridge toggle in the config spellbook** — f
   - **Row 1 (Quest Title)**: Displays the terminal title, as sent by your shell (e.g. agent/window titles via OSC 0/2) and rendered by Hyper natively.
   - **Row 2 (World Map)**: Shows your active directory path (`pwd`), tracked by the plugin.
 - 📍 **Live Radar Tracking (OSC 7)**: Real-time map updates as you teleport across directories (`cd`).
+- 📂 **Same-Dir Spawn (PWD Carry-Over)**: New tabs (`Cmd+T`) automatically spawn in the active tab's current directory — no more `cd` back into your project every time.
 - ⏱️ **Command Status Badges**:
   - **Charging Move**: Background tabs running tasks feature an animated spinner.
   - **Stage Cleared**: Displays a green checkmark when commands finish (clears on tab focus).
@@ -51,6 +52,7 @@ module.exports = {
     hyperKit: {
       verticalTab: true,     // 📜 Vertical tab bar with dual-row HUD (master switch)
       dragDropTabs: true,    // 🖱️ Drag & drop tab reorder
+      newTabSameDir: true,   // 📂 New tabs spawn in the active tab's current directory
     },
   },
 };
@@ -250,7 +252,7 @@ hyper-kit/
 │   │   └── state/             #    Small, encapsulated cross-feature stores
 │   │       ├── tab-session-store.ts  # cwd / status / session-start maps
 │   │       └── active-tab.ts         # Active Tab Tracking
-│   └── features/verticalTabs/ # 🕹️ One file per user-visible capability
+│   └── features/tabs/ # 🕹️ One file per user-visible capability
 │       ├── session-tracking.ts #    Status heuristics & stale-session pruning
 │       ├── env-panel.ts        #    Toolchain Inventory Panel
 │       ├── drag-drop-tabs.ts  #    Drag & Drop Reorder Controller

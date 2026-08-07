@@ -9,7 +9,7 @@ import {
   onSessionPtyData,
   pruneStaleSessions,
   pendingRun,
-} from '../../../src/features/verticalTabs/session-tracking';
+} from '../../../src/features/tabs/session-tracking';
 import {
   cwdMap,
   statusMap,

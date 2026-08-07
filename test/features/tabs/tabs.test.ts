@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { decorateTab } from '../../../src/features/verticalTabs/tabs';
+import { decorateTab } from '../../../src/features/tabs/tabs';
 
 function FakeTab(props: any) {
   return props;

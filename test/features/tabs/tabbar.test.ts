@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
-import { attachControls } from '../../../src/features/verticalTabs/tabbar';
+import { attachControls } from '../../../src/features/tabs/tabbar';
 import { STORAGE_KEY } from '../../../src/config';
 
 let dispose: (() => void) | null = null;

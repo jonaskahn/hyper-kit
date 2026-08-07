@@ -30,11 +30,13 @@ const CATEGORY_KEYS: Record<string, [string, string]> = {
 let uiConfig: Record<string, number | string[] | null> = Object.assign({}, DEFAULT_UI_CONFIG);
 let verticalTabEnabled = true;
 let dragDropTabsEnabled = true;
+let newTabSameDirEnabled = true;
 
 export function applyConfig(config?: Record<string, any> | null): void {
   uiConfig = Object.assign({}, DEFAULT_UI_CONFIG, (config && config.tabUi) || {});
   verticalTabEnabled = !config || config.hyperKit?.verticalTab !== false;
   dragDropTabsEnabled = !config || config.hyperKit?.dragDropTabs !== false;
+  newTabSameDirEnabled = !config || config.hyperKit?.newTabSameDir !== false;
 }
 
 export function isVerticalTabEnabled(): boolean {
@@ -43,6 +45,10 @@ export function isVerticalTabEnabled(): boolean {
 
 export function isDragDropTabsEnabled(): boolean {
   return dragDropTabsEnabled;
+}
+
+export function isNewTabSameDirEnabled(): boolean {
+  return newTabSameDirEnabled;
 }
 
 export function readUiConfig(): void {

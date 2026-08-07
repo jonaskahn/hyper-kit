@@ -1,13 +1,19 @@
 import React from 'react';
 
-import { FONT_FAMILY, applyConfig, readUiConfig, isVerticalTabEnabled } from './config';
+import {
+  FONT_FAMILY,
+  applyConfig,
+  readUiConfig,
+  isVerticalTabEnabled,
+  isNewTabSameDirEnabled,
+} from './config';
 import { setStore } from './platform/hyper-store';
-import * as sessionTracking from './features/verticalTabs/session-tracking';
+import * as sessionTracking from './features/tabs/session-tracking';
 import { cwdMap, statusMap, sessionStart, getLastCwd } from './platform/state/tab-session-store';
-import { attachControls } from './features/verticalTabs/tabbar';
-import { reloadEnvPanel } from './features/verticalTabs/env-panel';
+import { attachControls } from './features/tabs/tabbar';
+import { reloadEnvPanel } from './features/tabs/env-panel';
 import { HyperStore, HyperAction } from './types';
-import { decorateTab as decorateVerticalTab } from './features/verticalTabs/tabs';
+import { decorateTab as decorateVerticalTab } from './features/tabs/tabs';
 
 export { reduceTermGroups } from './core/reorder';
 
@@ -53,6 +59,12 @@ export const middleware =
     } else if (action.type === 'CONFIG_RELOAD') {
       readUiConfig();
       reloadEnvPanel();
+    }
+    if (action.type === 'TERM_GROUP_ADD' && isNewTabSameDirEnabled() && action.cwd === undefined) {
+      const lastCwd = getLastCwd();
+      if (lastCwd) {
+        return next(Object.assign({}, action, { cwd: lastCwd }));
+      }
     }
     return next(action);
   };

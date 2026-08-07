@@ -5,7 +5,7 @@ import {
   initTabDrag,
   disposeTabDrag,
   cancelDrag,
-} from '../../../src/features/verticalTabs/drag-drop-tabs';
+} from '../../../src/features/tabs/drag-drop-tabs';
 import { REORDER_ACTION } from '../../../src/core/reorder';
 import { setStore } from '../../../src/platform/hyper-store';
 
