@@ -949,8 +949,8 @@ ${PANES_BADGE_CSS}
     flex: none;
 }
 [data-kit-tab-bottom-panel] .bp-icon-btn {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -970,6 +970,10 @@ ${PANES_BADGE_CSS}
 }
 [data-kit-tab-bottom-panel] .bp-icon-btn:active {
     transform: scale(0.9);
+}
+[data-kit-tab-bottom-panel] .bp-icon-btn svg {
+    width: 17px;
+    height: 17px;
 }
 
 /* --- top status panel: 8-bit cat strip above the terminal area, flush
@@ -1081,13 +1085,13 @@ ${PANES_BADGE_CSS}
     -webkit-app-region: no-drag;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     color: rgba(255, 255, 255, 0.85);
-    max-height: min(560px, calc(100vh - 80px));
+    max-height: min(680px, calc(100vh - 80px));
 }
 .kit-explorer {
-    width: min(400px, calc(100vw - 24px));
+    width: min(560px, calc(100vw - 24px));
 }
 .kit-bookmark {
-    width: min(440px, calc(100vw - 24px));
+    width: min(620px, calc(100vw - 24px));
 }
 .kit-explorer-header,
 .kit-bookmark-header {
@@ -1165,7 +1169,7 @@ ${PANES_BADGE_CSS}
     display: flex;
     align-items: center;
     gap: 6px;
-    min-height: 32px;
+    min-height: 38px;
     border-radius: 6px;
     padding: 0 4px;
 }
@@ -1173,8 +1177,8 @@ ${PANES_BADGE_CSS}
     background: rgba(255, 255, 255, 0.06);
 }
 .kit-explorer-chevron {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     flex: none;
     display: flex;
     align-items: center;
@@ -1189,6 +1193,10 @@ ${PANES_BADGE_CSS}
 }
 .kit-explorer-chevron-open {
     transform: rotate(0deg);
+}
+.kit-explorer-chevron svg {
+    width: 12px;
+    height: 12px;
 }
 .kit-explorer-row-main {
     flex: 1;
@@ -1208,17 +1216,21 @@ ${PANES_BADGE_CSS}
     display: flex;
     color: rgba(255, 255, 255, 0.55);
 }
+.kit-explorer-icon svg {
+    width: 18px;
+    height: 18px;
+}
 .kit-explorer-name {
     flex: 1;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 13px;
+    font-size: 14px;
 }
 .kit-explorer-pin {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     flex: none;
     display: flex;
     align-items: center;
@@ -1233,6 +1245,10 @@ ${PANES_BADGE_CSS}
 .kit-explorer-pin:hover {
     color: rgba(255, 255, 255, 0.7);
 }
+.kit-explorer-pin svg {
+    width: 18px;
+    height: 18px;
+}
 .kit-explorer-pin-active {
     color: #f5c451;
 }
@@ -1242,8 +1258,8 @@ ${PANES_BADGE_CSS}
 .kit-explorer-terminal,
 .kit-explorer-files,
 .kit-explorer-split {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     flex: none;
     display: flex;
     align-items: center;
@@ -1260,6 +1276,12 @@ ${PANES_BADGE_CSS}
 .kit-explorer-split:hover {
     color: rgba(255, 255, 255, 0.7);
 }
+.kit-explorer-terminal svg,
+.kit-explorer-files svg,
+.kit-explorer-split svg {
+    width: 15px;
+    height: 15px;
+}
 .kit-explorer-children {
     margin-left: 16px;
 }
@@ -1273,7 +1295,7 @@ ${PANES_BADGE_CSS}
 }
 .kit-bookmark-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10px;
     padding: 4px;
 }
@@ -1283,7 +1305,7 @@ ${PANES_BADGE_CSS}
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    padding: 14px 10px;
+    padding: 18px 12px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.03);
@@ -1316,19 +1338,23 @@ ${PANES_BADGE_CSS}
 .kit-bookmark-tile-icon {
     color: rgba(255, 255, 255, 0.55);
 }
+.kit-bookmark-tile-icon svg {
+    width: 22px;
+    height: 22px;
+}
 .kit-bookmark-tile-name {
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 13px;
+    font-size: 14px;
 }
 .kit-bookmark-tile-path {
     max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 9.5px;
+    font-size: 10.5px;
     color: rgba(255, 255, 255, 0.4);
 }
 /* the marquee inner span: only this moves; the outer path element stays
@@ -1341,8 +1367,8 @@ ${PANES_BADGE_CSS}
     position: absolute;
     top: 4px;
     right: 4px;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1350,7 +1376,7 @@ ${PANES_BADGE_CSS}
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.18);
     color: rgba(255, 255, 255, 0.95);
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1;
     padding: 0;
     cursor: pointer;
@@ -1379,8 +1405,8 @@ ${PANES_BADGE_CSS}
     opacity: 1;
 }
 .kit-bookmark-tile-action {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1396,6 +1422,10 @@ ${PANES_BADGE_CSS}
 .kit-bookmark-tile-action:hover {
     background: rgba(255, 255, 255, 0.32);
     color: #fff;
+}
+.kit-bookmark-tile-action svg {
+    width: 15px;
+    height: 15px;
 }
 .kit-bookmark-empty {
     padding: 24px 16px;
