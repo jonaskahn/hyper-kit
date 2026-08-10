@@ -118,6 +118,27 @@ npm run check     # typecheck + lint + format + tests + build
 | stale UI           | full quit `Cmd + Q` — config doesn't hot-reload     |
 | build errors       | Node 18+, delete `node_modules` + `dist`, reinstall |
 
+## ▚ KNOWN BUGS
+
+**Input freeze while a command runs (Hyper 3.4.1 / Electron 20.3.6 on macOS).**
+Hyper's bundled Electron is broken in a fundamental way on current macOS:
+the moment a foreground command runs (even a bare `sleep`), the window
+permanently stops receiving keyboard and mouse input. Reproduced with the
+plugin completely removed (`localPlugins: []`, default config), with both
+WebGL and canvas renderers, and with any config — so this is a Hyper bug,
+not a plugin bug. There is no workaround from a plugin; report it upstream
+(https://github.com/vercel/hyper/issues) and/or try Hyper canary (newer
+Electron). Hyper 3.4.1 is the latest stable release.
+
+**Cancelling the close guard's dialog freezes the terminal (same root
+cause).** The `confirmClose` guard prevents the native window close and
+shows a dialog; because of the Electron bug above, any window that survives
+a native close attempt also dies to input. If you cancel the dialog while a
+tab is running, the terminal stops responding until the window is actually
+closed. Quitting (force-quit or the dialog's confirm button) still works.
+The tab-level close guard (`TERM_GROUP_EXIT` + HTML dialog) never touches
+the native window and is unaffected.
+
 ---
 
 <p align="center">
